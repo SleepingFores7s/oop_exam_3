@@ -15,8 +15,6 @@ public class SlidingPuzzle {
      * - If every number left -> right top -> bottom is 1 -> 15 then a Win message is displayed.
      *
      *
-     * Test to see what repository its copied to
-     *
      */
 
 }
