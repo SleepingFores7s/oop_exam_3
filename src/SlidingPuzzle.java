@@ -1,3 +1,5 @@
+import SwingResources.FrameWindow;
+
 public class SlidingPuzzle {
 
     /**
@@ -14,7 +16,12 @@ public class SlidingPuzzle {
      *
      * - If every number left -> right top -> bottom is 1 -> 15 then a Win message is displayed.
      *
-     *
      */
+
+    public void GameLoop() {
+
+        new FrameWindow().frameGUI();
+
+    }
 
 }
