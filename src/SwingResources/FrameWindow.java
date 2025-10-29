@@ -17,13 +17,12 @@ public class FrameWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-
+        
         PanelContainer panels = new PanelContainer(SIZE_WIDTH, SIZE_HEIGHT);
         add(panels, BorderLayout.CENTER);
 
+
+
         setVisible(true);
-//        pack();
-
-
     }
 }
