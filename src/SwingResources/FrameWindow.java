@@ -16,13 +16,13 @@ public class FrameWindow extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
+
+
+        PanelContainer panels = new PanelContainer(SIZE_WIDTH, SIZE_HEIGHT);
+        add(panels, BorderLayout.CENTER);
+
         setVisible(true);
-
-        ButtonNumberPanel buttonNumberPanel = new ButtonNumberPanel(SIZE_HEIGHT, SIZE_WIDTH);
-        add(buttonNumberPanel, BorderLayout.CENTER);
-
-
-        pack();
+//        pack();
 
 
     }
