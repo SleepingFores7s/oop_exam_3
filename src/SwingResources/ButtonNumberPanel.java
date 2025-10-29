@@ -5,9 +5,9 @@ import java.awt.*;
 
 public class ButtonNumberPanel extends JPanel {
 
-    public ButtonNumberPanel(int sizeW, int sizeH) {
+    public ButtonNumberPanel() {
         setLayout(new GridLayout(4,4,4,4));
-        setPreferredSize(new Dimension(sizeW, sizeH));
+//        setPreferredSize(new Dimension(sizeW, sizeH));
         JButton button1 = new JButton("1");
         JButton button2 = new JButton("2");
         JButton button3 = new JButton("3");
