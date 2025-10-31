@@ -14,12 +14,12 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     public ButtonNumberPanel() {
         setLayout(new GridLayout(4, 4, 4, 4));
 
+        //puts the number buttons into the array
+        putIntoArray();
+
         //Empty space button
         JButton buttonEmpty = new JButton("");
         buttonArray.add(buttonEmpty);
-
-        //puts the buttons into the array
-        putIntoArray();
 
         //Shuffles the array
         shuffleButtons();
@@ -85,7 +85,26 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     public void winningCheck() {
         for (int i = 0; i < 15; i++) {
 
+            if (buttonArray.get(i).getText().equals("")) {
+                break;
+            }
+
+            int numberInOrder = Integer.parseInt(buttonArray.get(i).getText());
+
+            if (numberInOrder != (i + 1)) {
+                break;
+            } else {
+                if (numberInOrder == 15) {
+                    winningPanel();
+                }
+            }
+
         }
+    }
+
+    public void winningPanel() {
+        //Todo - Make a call to a panel to display that player has won
+        System.out.println("You won!");
     }
 
 
