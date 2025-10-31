@@ -44,84 +44,70 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
 
     }
 
+    public int getPressedLocation(ActionEvent e) {
+
+        for (int i = 0; i < buttonArray.size(); i++) {
+            if(e.getSource() == buttonArray.get(i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int getEmptyLocation() {
+
+        for (int j = 0; j < buttonArray.size(); j++) {
+            if (buttonArray.get(j).getText().isEmpty()) {
+                return j;
+            }
+        }
+        return -1;
+    }
+
+    public void switchPositions(int pressLocation, int emptyLocation) {
+
+        JButton tempStorage;
+        tempStorage = buttonArray.get(emptyLocation);
+        buttonArray.set(emptyLocation, buttonArray.get(pressLocation));
+        buttonArray.set(pressLocation, tempStorage);
+
+        removeAll();
+        addToPanel();
+        revalidate();
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //Check the array for the used button and save its position in a temp variable
-        //Use the temp vari to look at -4,-1, +1, +4 to see if any of them is ""
-        //  -if not do nothing
-        //  -if it is, swap positions of the "" and used button
+        //Gets the pressed & empty buttons locations
+        int pressedLocation = getPressedLocation(e);
+        int emptyLocation = getEmptyLocation();
 
-        int tempPress = -1;
-        int tempEmpty = -1;
-        int i;
-        int j;
-        //Todo - move pressed source into its own method
+        //Checks if the number is located on the left side
+        if (pressedLocation == 3 || pressedLocation == 7 || pressedLocation == 11 || pressedLocation == 15) {
+            if ((pressedLocation + 4) == emptyLocation || (pressedLocation - 1) == emptyLocation || (pressedLocation - 4) == emptyLocation) {
 
-        for (i = 0; i < buttonArray.size(); i++) {
-            if(e.getSource() == buttonArray.get(i)) {
-                tempPress = i;
-                break;
-            }
-        }
+                switchPositions(pressedLocation, emptyLocation);
 
-        //Todo - move blank space location into its own method
-        for (j = 0; j < buttonArray.size(); j++) {
-            if (buttonArray.get(j).getText().equals("")) {
-                tempEmpty = j;
-                break;
-            }
-        }
-
-        JButton tempStorage;
-
-        if(tempPress == 3 || tempPress == 7 || tempPress == 11 || tempPress == 15) {
-
-            if((tempPress +4) == tempEmpty || (tempPress - 1) == tempEmpty || (tempPress - 4) == tempEmpty) {
-
-                tempStorage = buttonArray.get(tempEmpty);
-
-                buttonArray.set(tempEmpty, buttonArray.get(tempPress));
-                buttonArray.set(tempPress, tempStorage);
-
-                removeAll();
-
-                addToPanel();
-
-                revalidate();
             }
 
-        } else if (tempPress == 0 || tempPress == 4 || tempPress == 8 || tempPress == 12) {
+            //Checks if the number is located on the right side
+        } else if (pressedLocation == 0 || pressedLocation == 4 || pressedLocation == 8 || pressedLocation == 12) {
+            if ((pressedLocation + 1) == emptyLocation || (pressedLocation + 4) == emptyLocation || (pressedLocation - 4) == emptyLocation) {
 
-            if((tempPress +4) == tempEmpty || (tempPress + 1) == tempEmpty || (tempPress - 4) == tempEmpty) {
+                switchPositions(pressedLocation, emptyLocation);
 
-                tempStorage = buttonArray.get(tempEmpty);
-
-                buttonArray.set(tempEmpty, buttonArray.get(tempPress));
-                buttonArray.set(tempPress, tempStorage);
-
-                removeAll();
-
-                addToPanel();
-
-                revalidate();
             }
 
-        }else {
-            if ((tempPress + 1) == tempEmpty || (tempPress + 4) == tempEmpty || (tempPress - 1) == tempEmpty || (tempPress - 4) == tempEmpty) {
+            //Runs if the number is not on the left or right side
+        } else {
+            if ((pressedLocation + 4) == emptyLocation || (pressedLocation + 1) == emptyLocation || (pressedLocation - 1) == emptyLocation || (pressedLocation - 4) == emptyLocation) {
 
-                tempStorage = buttonArray.get(tempEmpty);
+                switchPositions(pressedLocation, emptyLocation);
 
-                buttonArray.set(tempEmpty, buttonArray.get(tempPress));
-                buttonArray.set(tempPress, tempStorage);
-
-                removeAll();
-
-                addToPanel();
-
-                revalidate();
             }
+
         }
 
 
