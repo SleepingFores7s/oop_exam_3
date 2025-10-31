@@ -12,7 +12,7 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     ArrayList<JButton> buttonArray = new ArrayList<>();
 
     public ButtonNumberPanel() {
-        setLayout(new GridLayout(4,4,4,4));
+        setLayout(new GridLayout(4, 4, 4, 4));
 
         //Empty space button
         JButton buttonEmpty = new JButton("");
@@ -22,7 +22,7 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         putIntoArray();
 
         //Shuffles the array
-        Collections.shuffle(buttonArray);
+        shuffleButtons();
 
         //adds the buttons to the panel
         addToPanel();
@@ -36,10 +36,14 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         }
     }
 
+    public void shuffleButtons() {
+        Collections.shuffle(buttonArray);
+    }
+
     public void addToPanel() {
 
-        for (int i = 0; i < buttonArray.size(); i++) {
-            add(buttonArray.get(i));
+        for (JButton jButton : buttonArray) {
+            add(jButton);
         }
 
     }
@@ -47,7 +51,7 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     public int getPressedLocation(ActionEvent e) {
 
         for (int i = 0; i < buttonArray.size(); i++) {
-            if(e.getSource() == buttonArray.get(i)) {
+            if (e.getSource() == buttonArray.get(i)) {
                 return i;
             }
         }
@@ -74,6 +78,14 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         removeAll();
         addToPanel();
         revalidate();
+
+        winningCheck();
+    }
+
+    public void winningCheck() {
+        for (int i = 0; i < 15; i++) {
+
+        }
     }
 
 
@@ -109,7 +121,6 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
             }
 
         }
-
 
 
     }
