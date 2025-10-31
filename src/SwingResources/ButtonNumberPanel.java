@@ -98,13 +98,18 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
                     winningPanel();
                 }
             }
-
         }
     }
 
     public void winningPanel() {
-        //Todo - Make a call to a panel to display that player has won
+        //Todo - Make a panel to display that player has won
         System.out.println("You won!");
+
+        removeAll();
+        add(new JTextField("You won!"));
+        revalidate();
+        repaint();
+
     }
 
 
