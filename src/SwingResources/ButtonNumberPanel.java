@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class ButtonNumberPanel extends JPanel implements ActionListener {
 
-    ArrayList<JButton> buttonArray = new ArrayList<>();
+    private ArrayList<JButton> buttonArray = new ArrayList<>();
 
     public ButtonNumberPanel() {
         setLayout(new GridLayout(4, 4, 4, 4));
@@ -19,10 +19,11 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
 
         //Empty space button
         JButton buttonEmpty = new JButton("");
+        buttonEmpty.setBackground(Color.decode("#5AAB61"));
         buttonArray.add(buttonEmpty);
 
         //Shuffles the array
-        shuffleButtons();
+//        shuffleButtons();
 
         //adds the buttons to the panel
         addToPanel();
@@ -31,13 +32,17 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     public void putIntoArray() {
         for (int i = 1; i <= 15; i++) {
             JButton button = new JButton(String.valueOf(i));
+            button.setBackground(Color.decode("#268b07"));
+            button.setForeground(Color.white);
             button.addActionListener(this);
             buttonArray.add(button);
         }
+        System.out.println("log: Buttons added to Array. Size: " + buttonArray.size());
     }
 
     public void shuffleButtons() {
         Collections.shuffle(buttonArray);
+        System.out.println("log: Buttons shuffled");
     }
 
     public void addToPanel() {
@@ -45,13 +50,14 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         for (JButton jButton : buttonArray) {
             add(jButton);
         }
-
+        System.out.println("log: Buttons added to panel");
     }
 
     public int getPressedLocation(ActionEvent e) {
 
         for (int i = 0; i < buttonArray.size(); i++) {
             if (e.getSource() == buttonArray.get(i)) {
+                System.out.println("log: Pressed button = "+i);
                 return i;
             }
         }
@@ -62,6 +68,7 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
 
         for (int j = 0; j < buttonArray.size(); j++) {
             if (buttonArray.get(j).getText().isEmpty()) {
+                System.out.println("log: Empty location = " + j);
                 return j;
             }
         }
@@ -78,6 +85,8 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         removeAll();
         addToPanel();
         revalidate();
+
+        System.out.println("log: Positions switched");
 
         winningCheck();
     }
@@ -102,8 +111,8 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
     }
 
     public void winningPanel() {
-        //Todo - Make a panel to display that player has won
-        System.out.println("You won!");
+
+        //Todo - make the win game message "prettier"
 
         removeAll();
         add(new JTextField("You won!"));
@@ -111,7 +120,6 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         repaint();
 
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
