@@ -9,9 +9,12 @@ import java.util.Collections;
 
 public class ButtonNumberPanel extends JPanel implements ActionListener {
 
-    ArrayList<JButton> buttonArray = new ArrayList<>();
+    //Essentials
+    private ArrayList<JButton> buttonArray = new ArrayList<>();
 
     public ButtonNumberPanel() {
+
+        //sets Layout
         setLayout(new GridLayout(4, 4, 4, 4));
 
         //puts the number buttons into the array
@@ -19,55 +22,68 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
 
         //Empty space button
         JButton buttonEmpty = new JButton("");
+        buttonEmpty.setBackground(Color.decode("#DCDCDC"));
         buttonArray.add(buttonEmpty);
 
         //Shuffles the array
-        shuffleButtons();
+//        shuffleButtons();
 
         //adds the buttons to the panel
         addToPanel();
     }
 
+    //Places buttons into Array
     public void putIntoArray() {
         for (int i = 1; i <= 15; i++) {
             JButton button = new JButton(String.valueOf(i));
+            button.setBackground(Color.decode("#FFFAF0"));
+            button.setForeground(Color.decode("#005577"));
             button.addActionListener(this);
             buttonArray.add(button);
         }
+        System.out.println("log: Buttons added to Array. Size: " + buttonArray.size());
     }
 
+    //Shuffles Array
     public void shuffleButtons() {
         Collections.shuffle(buttonArray);
+        System.out.println("log: Buttons shuffled");
     }
 
+    //Adds Array buttons to panel
     public void addToPanel() {
 
         for (JButton jButton : buttonArray) {
             add(jButton);
         }
-
+        System.out.println("log: Buttons added to panel");
     }
 
+    //Gets Array location of pressed button
     public int getPressedLocation(ActionEvent e) {
 
         for (int i = 0; i < buttonArray.size(); i++) {
             if (e.getSource() == buttonArray.get(i)) {
+                System.out.println("log: Pressed button = "+i);
                 return i;
             }
         }
         return -1;
     }
 
+    //gets Array location of empty button
     public int getEmptyLocation() {
 
         for (int j = 0; j < buttonArray.size(); j++) {
             if (buttonArray.get(j).getText().isEmpty()) {
+                System.out.println("log: Empty location = " + j);
                 return j;
             }
         }
         return -1;
     }
 
+    //Switches position of empty & pressed buttons, then checks if the game is won
     public void switchPositions(int pressLocation, int emptyLocation) {
 
         JButton tempStorage;
@@ -79,9 +95,12 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         addToPanel();
         revalidate();
 
+        System.out.println("log: Positions switched");
+
         winningCheck();
     }
 
+    //Checks if buttons are in correct order to win
     public void winningCheck() {
         for (int i = 0; i < 15; i++) {
 
@@ -101,18 +120,21 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         }
     }
 
+    //Makes a win panel appear
     public void winningPanel() {
-        //Todo - Make a panel to display that player has won
-        System.out.println("You won!");
+
+        //Text Field to be added to panel
+        JTextField winMessage = new JTextField("You Won!");
+        winMessage.setHorizontalAlignment(0);
 
         removeAll();
-        add(new JTextField("You won!"));
+        add(winMessage);
         revalidate();
         repaint();
 
     }
 
-
+    //Checks if the pressed button is on the Left/Middle/Right side, then calls switchPositions
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -146,6 +168,6 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
 
         }
 
-
     }
+
 }
