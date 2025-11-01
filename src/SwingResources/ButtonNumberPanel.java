@@ -26,7 +26,7 @@ public class ButtonNumberPanel extends JPanel implements ActionListener {
         buttonArray.add(buttonEmpty);
 
         //Shuffles the array
-//        shuffleButtons();
+        shuffleButtons();
 
         //adds the buttons to the panel
         addToPanel();
