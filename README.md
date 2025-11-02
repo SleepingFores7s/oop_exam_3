@@ -1,5 +1,5 @@
 🧩 15 Puzzle Game – Java Swing Edition
-A classic sliding puzzle built with Java Swing, featuring a randomized 4×4 grid, responsive UI, and a celebratory win screen. Designed for clarity, modularity, and visual polish.
+A classic sliding puzzle built with Java Swing, featuring a randomized 4×4 grid, responsive UI, and a celebratory win screen.
 
 🎮 Features
 - 	4×4 Sliding Puzzle: Rearrange tiles numbered 1–15 into order by sliding them into the empty space.
