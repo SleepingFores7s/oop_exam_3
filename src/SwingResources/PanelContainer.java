@@ -22,10 +22,12 @@ public class PanelContainer extends JPanel {
         numberPanel = new ButtonNumberPanel();
         add(numberPanel,BorderLayout.CENTER);
 
-        //New Game button + listener
+        //Resets the game / re-shuffles
         newGameButton.addActionListener(e -> {
-            resetGame();
-            System.out.println("Log: Game reset.");
+            numberPanel.removeAll();
+            numberPanel.shuffleButtons();
+            numberPanel.addToPanel();
+            numberPanel.revalidate();
         });
 
         //Sets the color for New Game button
@@ -34,14 +36,6 @@ public class PanelContainer extends JPanel {
 
         //Adds New Game button to panel
         add(newGameButton, BorderLayout.SOUTH);
-    }
-
-    //Resets the game / re-shuffles
-    public void resetGame() {
-        numberPanel.removeAll();
-        numberPanel.shuffleButtons();
-        numberPanel.addToPanel();
-        numberPanel.revalidate();
     }
 
 }
