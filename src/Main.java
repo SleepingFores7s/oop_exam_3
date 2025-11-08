@@ -1,7 +1,9 @@
+import SwingResources.FrameWindow;
+
 public class Main {
     void main() {
 
-        new SlidingPuzzle().GameLoop();
+        new FrameWindow().frameGUI();
 
     }
 }

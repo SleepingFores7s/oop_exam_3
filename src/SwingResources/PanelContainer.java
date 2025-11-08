@@ -7,7 +7,8 @@ public class PanelContainer extends JPanel {
 
     //Essentials
     private ButtonNumberPanel numberPanel;
-    JButton newGameButton = new JButton("New Game");
+    private NewGameButton newGameButton;
+//    JButton newGameButton = new JButton("New Game");
 
     public PanelContainer(int sizeW,int sizeH) {
 
@@ -22,20 +23,10 @@ public class PanelContainer extends JPanel {
         numberPanel = new ButtonNumberPanel();
         add(numberPanel,BorderLayout.CENTER);
 
-        //Resets the game / re-shuffles
-        newGameButton.addActionListener(e -> {
-            numberPanel.removeAll();
-            numberPanel.shuffleButtons();
-            numberPanel.addToPanel();
-            numberPanel.revalidate();
-        });
-
-        //Sets the color for New Game button
-        newGameButton.setBackground(Color.decode("#FFFAF0"));
-        newGameButton.setForeground(Color.decode("#005577"));
-
-        //Adds New Game button to panel
+        //New Game Button
+        newGameButton = new NewGameButton();
         add(newGameButton, BorderLayout.SOUTH);
+
     }
 
 }
